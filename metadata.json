@@ -1,0 +1,6 @@
+{
+  "name": "رایاسلیکون — فروشگاه تخصصی قطعات کامپیوتر",
+  "description": "فروشگاه تخصصی سخت‌افزار و قطعات کامپیوتر با اسمبل هوشمند، بررسی سازگاری و ثبت سفارش آنلاین",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

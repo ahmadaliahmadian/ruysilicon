@@ -1,0 +1,284 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated customer profile and shipping information",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 150
+        },
+        "fullName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "province": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "profileCompleted": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "uid",
+        "email",
+        "fullName",
+        "phone",
+        "province",
+        "city",
+        "address",
+        "postalCode",
+        "profileCompleted",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CartItem": {
+      "title": "CartItem",
+      "description": "Item stored in a user's persistent shopping cart",
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["productId", "quantity", "addedAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Confirmed hardware purchase order",
+      "type": "object",
+      "properties": {
+        "orderNumber": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 30
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "customerPhone": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 20
+        },
+        "shippingAddress": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 350
+        },
+        "shippingMethod": {
+          "type": "string",
+          "enum": ["express", "post", "pickup"]
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["online", "cod"]
+        },
+        "discountCode": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "subtotal": {
+          "type": "number"
+        },
+        "shippingCost": {
+          "type": "number"
+        },
+        "discountAmount": {
+          "type": "number"
+        },
+        "totalAmount": {
+          "type": "number"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["confirmed", "preparing", "shipped", "delivered", "cancelled"]
+        },
+        "itemsCount": {
+          "type": "integer"
+        },
+        "itemsSummary": {
+          "type": "string",
+          "maxLength": 600
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "orderNumber",
+        "userId",
+        "customerName",
+        "customerPhone",
+        "shippingAddress",
+        "shippingMethod",
+        "paymentMethod",
+        "discountCode",
+        "subtotal",
+        "shippingCost",
+        "discountAmount",
+        "totalAmount",
+        "status",
+        "itemsCount",
+        "itemsSummary",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "OrderItem": {
+      "title": "OrderItem",
+      "description": "Line item inside an order",
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "productId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "unitPrice": {
+          "type": "number"
+        },
+        "quantity": {
+          "type": "integer"
+        }
+      },
+      "required": ["orderId", "userId", "productId", "title", "unitPrice", "quantity"]
+    },
+    "ProductReview": {
+      "title": "ProductReview",
+      "description": "Customer review for a hardware component",
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "authorName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "rating": {
+          "type": "integer"
+        },
+        "comment": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 600
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["productId", "userId", "authorName", "rating", "comment", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private customer profile and shipping details"
+    },
+    "/users/{userId}/cart/{itemId}": {
+      "schema": { "$ref": "#/entities/CartItem" },
+      "description": "User's persistent shopping cart items"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer hardware purchase orders"
+    },
+    "/orders/{orderId}/items/{itemId}": {
+      "schema": { "$ref": "#/entities/OrderItem" },
+      "description": "Order line items subcollection"
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "#/entities/ProductReview" },
+      "description": "Publicly readable product reviews authored by verified users"
+    }
+  }
+}
